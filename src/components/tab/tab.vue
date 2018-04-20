@@ -1,12 +1,15 @@
 <template>
   <div class="main-nav tab">
-    <router-link tag="div" class="tab__item" to="/Data">
+    <router-link tag="div" v-on:click.native="hide" class="tab__item" to="/Data">
       <span class="tab-link">数据概览</span>
     </router-link>
-    <router-link tag="div" class="tab__item" to="/ScoreAnalysis">
-      <span class="tab-link" ref="tabpingfen">评分分析</span>
+    <router-link tag="div" v-on:click.native="hide" class="tab__item" to="/Detail">
+      <span class="tab-link">详情页</span>
     </router-link>
-    <div class="tab__wrapper" ref="tabwrapper">
+    <router-link tag="div"  v-on:click.native="show" class="tab__item" to="/ScoreAnalysis">
+      <span class="tab-link" >评分分析</span>
+    </router-link>
+    <div class="tab__wrapper" ref="tab__wrapper" >
       <router-link tag="div" class="tab__item-sub" to="/ScoreAnalysis/Myarea">地区分析</router-link>
       <router-link tag="div" class="tab__item-sub" to="/ScoreAnalysis/Mytype">类型分析</router-link>
       <router-link tag="div" class="tab__item-sub" to="/ScoreAnalysis/Language">语言分析</router-link>
@@ -16,15 +19,20 @@
 
 <script type="text/ecmascript-6">
   export default {
-    created() {
-      this.init();
+    data () {
+      return {
+        counter: 0
+      }
+    },
+    created () {
     },
     methods: {
-      init() {
-        this.$refs.tabpingfen.on('click', function () {
-        this.$refs.tabwrapper.style.display = 'block';
-        console.log(1);
-        })
+      show: function () {
+        this.$refs.tab__wrapper.style.display = 'block'
+      // debugger;
+      },
+      hide: function () {
+        this.$refs.tab__wrapper.style.display = 'none'
       }
     }
   }
@@ -46,6 +54,10 @@
   .tab__wrapper {
     display: none;
   }
+  .tab__wrapper-data {
+    display: none;
+  }
+
 
   .tab__item-sub {
     height: 40px;
@@ -65,6 +77,9 @@
   .tab
     display: flex
     flex-direction: column
+    height: 600px;
+    background-color: #4b5868;
+    width: 300px;
     .tab-item
       flex: 1
       text-align: center

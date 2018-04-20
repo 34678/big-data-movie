@@ -5,6 +5,7 @@ import Data from '@/components/data.vue'
 import Myarea from '@/components/score/myarea.vue'
 import Mytype from '@/components/score/mytype.vue'
 import Language from '@/components/score/language.vue'
+import Detail from '@/components/data/detail.vue'
 
 Vue.use(Router)
 export default new Router({
@@ -41,7 +42,11 @@ export default new Router({
       path: '/Data',
       name: 'Data',
       component: Data
+    },
+    {
+      path: '/Detail',
+      name: 'Detial',
+      component: Detail
     }
-
   ]
 })

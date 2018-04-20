@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <div class="icon"></div>
-    <h1 class="text">XX平台</h1>
+    <div class="banner"></div>
   </div>
 </template>
 
@@ -11,10 +11,13 @@ export default {}
 <style scoped lang="stylus" rel="stylesheet/stylus">
   .header
     position: relative
-    height: 44px
+    height: 106px
     text-align: center
     color: black
     font-size: 0
+    background-image :url('../../../static/images/banner.png')
+    background-repeat: no-repeat;
+    background-color: #1e2d35;
     .icon
       display: inline-block
       vertical-align: top

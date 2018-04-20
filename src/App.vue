@@ -11,7 +11,8 @@
 <script>
 import Tab from './components/tab/tab'
 import Header from './components/header/header'
-export default {
+export default
+{
   name: 'App',
   components: {
     Header,
@@ -35,6 +36,7 @@ export default {
   float:left;
 }
   .view{
-
+    height: 600px;
+    margin-left: 300px;
   }
 </style>
