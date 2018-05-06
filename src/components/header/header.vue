@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <div class="icon"></div>
-    <div class="banner"></div>
+    <div class="banner">电影大数据分析平台</div>
   </div>
 </template>
 
@@ -15,9 +15,9 @@ export default {}
     text-align: center
     color: black
     font-size: 0
-    background-image :url('../../../static/images/banner.png')
+    // background-image :url('../../../static/images/banner.png')
     background-repeat: no-repeat;
-    background-color: #1e2d35;
+    background: #0098E1;
     .icon
       display: inline-block
       vertical-align: top
@@ -27,6 +27,12 @@ export default {}
       margin-right: 9px
       bg-image('logo')
       background-size: 30px 32px
+    .banner
+      font-size: 52px;
+      font-weight: bold;
+      color: white;
+      text-align: left;
+      margin-left: 106px;
     .text
       display: inline-block
       vertical-align: top

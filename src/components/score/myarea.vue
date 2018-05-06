@@ -1,5 +1,5 @@
 <template>
-<div>
+<div id="wrapper">
   area
 </div>
 </template>

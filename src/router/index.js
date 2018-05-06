@@ -12,8 +12,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'ScoreAnalysis',
-      component: ScoreAnalysis
+      name: 'Data',
+      component: Data
     },
     {
       path: '/ScoreAnalysis',
