@@ -12,7 +12,8 @@
     <div class="tab__wrapper" ref="tab__wrapper" >
       <router-link tag="div" class="tab__item-sub" to="/ScoreAnalysis/Myarea">地区分析</router-link>
       <router-link tag="div" class="tab__item-sub" to="/ScoreAnalysis/Mytype">类型分析</router-link>
-      <router-link tag="div" class="tab__item-sub" to="/ScoreAnalysis/Language">语言分析</router-link>
+      <router-link tag="div" class="tab__item-sub" to="/ScoreAnalysis/highScore">用户分析</router-link>
+      <router-link tag="div" class="tab__item-sub" to="/ScoreAnalysis/Duration">时长分析</router-link>
     </div>
   </div>
 </template>

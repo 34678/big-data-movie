@@ -1,20 +1,18 @@
 <template>
 <div id="wrapper">
   <another-tab></another-tab>
-  <selector></selector>
   <div id="chart"></div>
 </div>
 </template>
 
 <script>
 import anotherTab from '../tab/anotherTab.vue'
-import selector from '../base/select.vue'
 export default {
   data(){
     return {
       option : {
           title: {
-              text: '电影类型/地区与数量关系',
+              text: '电影时长与评分关系',
               subtext: '纯属虚构'
           },
           xAxis: {
@@ -43,8 +41,7 @@ export default {
     }
   },
   components: {
-      anotherTab,
-      selector
+      anotherTab
   }
 }
 </script>

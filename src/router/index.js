@@ -4,7 +4,8 @@ import ScoreAnalysis from '@/components/score_analysis.vue'
 import Data from '@/components/data.vue'
 import Myarea from '@/components/score/myarea.vue'
 import Mytype from '@/components/score/mytype.vue'
-import Language from '@/components/score/language.vue'
+import highScore from '@/components/score/highscore.vue'
+import Duration from '@/components/score/duration.vue'
 import Detail from '@/components/data/detail.vue'
 
 Vue.use(Router)
@@ -33,8 +34,12 @@ export default new Router({
           component: Mytype
         },
         {
-          path: 'Language',
-          component: Language
+          path: 'highScore',
+          component: highScore
+        },
+        {
+          path: 'Duration',
+          component: Duration    
         }
       ]
     },
