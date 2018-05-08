@@ -7,7 +7,10 @@ import  './common/css/reset.css'
 import './common/css/share.css'
 import echarts from 'echarts'
 Vue.prototype.$echarts = echarts 
+import axios from 'axios'
+Vue.prototype.$http = axios
 Vue.config.productionTip = false
+
 
 /* eslint-disable no-new */
 new Vue({

@@ -1,6 +1,6 @@
 <template>
 <div id="wrapper">
-  <another-tab></another-tab>
+  <another-tab :active1=true></another-tab>
   <div id="chart"></div>
 </div>
 </template>

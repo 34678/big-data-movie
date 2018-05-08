@@ -3,14 +3,20 @@
 <div class="list">
   <div class="name">
     <i class="iconfont"></i>
-    <span>Demo类型</span>
+    <span>{{items[0]}}</span>
 </div>
+<div></div>
   <!--ms-if--></div>
  
 </template>
 
 <script>
 export default {
+    data(){
+        return {
+            items:[1,2,3,4,5,6]
+        }
+    }
 }
 </script>
 

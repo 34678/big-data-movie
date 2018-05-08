@@ -171,9 +171,6 @@ export default {};
 </script>
 
 <style scoped>
-*{
-
-}
 .subjectwrap {
     width: 800px;
     margin: 0 auto;
@@ -188,7 +185,7 @@ export default {};
 #info {
     text-align: left;
 }
-.subjectwrap[data-v-4f2c80fa] {
+.subjectwrap {
     width: 800px;
     margin: 0 auto;
     margin-top: 52px;
@@ -196,7 +193,7 @@ export default {};
 .clearfix {
     display: inline-block;
 }
-.related_info{
+.related-info{
       margin-bottom: -10px;
     width: 800px;
     margin: 0 auto;

@@ -14,20 +14,28 @@
                   <td style=" font-weight:bold; color:#000000">上映日期</td>
                   <td style="font-weight: bold; color: #000000; ">影片名称</td>
                   <td style=" font-weight: bold; color: #000000; ">影片类别</td>
-                  <td style=" font-weight: bold; color: #000000; ">购票指数</td>
-                  <td style=" font-weight: bold; color: #000000; ">购票指数</td>
+                  <td style=" font-weight: bold; color: #000000; ">地区</td>
+                  <td style=" font-weight: bold; color: #000000; ">电影排名</td>
               </tr>
               <tr v-for="item in top" onclick="gotom(this.id)" class="trtop">
-                  <td>{{item.date}}</td>
-                  <td>{{item.name}}</td>
+                  <td>{{item.release_date}}</td>
+                  <td>{{item.movie_name}}</td>
                   <td>{{item.type}}</td>
-                  <td>{{item.area}}</td>
-                  <td>{{item.rate}}</td>
+                  <td>{{item.region}}</td>
+                  <td>{{item.movie_id}}</td>
               </tr>
           </tbody>
         </table>
-        <div class="container large"><div class="pagination"><ul><li v-for="n in totalPage" ><a>{{n}}</a></li></ul></div></div>
-      </div>
+          <div class="container large">
+            <div class="pagination">
+              <ul>
+                <li v-for="n in totalPage">
+                  <a>{{n}}</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          </div>
     </div>
     <div class="mian_right">
       <h1>网站信息</h1>
@@ -99,147 +107,27 @@ export default {
       },
       page: 1,
       totalPage: 17,
-      top: {
-        a: {
-          date: "e",
-          name: "r",
-          type: "4",
-          area: "r",
-          rate: 1
-        },
-        d: {
-          date: "e",
-          name: "r",
-          type: "4",
-          area: "r",
-          rate: 1
-        },
-        b: {
-          date: "e",
-          name: "r",
-          type: "4",
-          area: "r",
-          rate: 1
-        },
-        c: {
-          date: "e",
-          name: "r",
-          type: "4",
-          area: "r",
-          rate: 1
-        },
-        a: {
-          date: "e",
-          name: "r",
-          type: "4",
-          area: "r",
-          rate: 1
-        },
-        d: {
-          date: "e",
-          name: "r",
-          type: "4",
-          area: "r",
-          rate: 1
-        },
-        b: {
-          date: "e",
-          name: "r",
-          type: "4",
-          area: "r",
-          rate: 1
-        },
-        e: {
-          date: "e",
-          name: "r",
-          type: "4",
-          area: "r",
-          rate: 1
-        },
-                a: {
-          date: "e",
-          name: "r",
-          type: "4",
-          area: "r",
-          rate: 1
-        },
-        d: {
-          date: "e",
-          name: "r",
-          type: "4",
-          area: "r",
-          rate: 1
-        },
-        b: {
-          date: "e",
-          name: "r",
-          type: "4",
-          area: "r",
-          rate: 1
-        },
-        f: {
-          date: "e",
-          name: "r",
-          type: "4",
-          area: "r",
-          rate: 1
-        },
-        a: {
-          date: "e",
-          name: "r",
-          type: "4",
-          area: "r",
-          rate: 1
-        },
-        d: {
-          date: "e",
-          name: "r",
-          type: "4",
-          area: "r",
-          rate: 1
-        },
-        s: {
-          date: "e",
-          name: "r",
-          type: "4",
-          area: "r",
-          rate: 1
-        },
-        r: {
-          date: "e",
-          name: "r",
-          type: "4",
-          area: "r",
-          rate: 1
-        },
-        q: {
-          date: "e",
-          name: "r",
-          type: "4",
-          area: "r",
-          rate: 1
-        },
-        p: {
-          date: "e",
-          name: "r",
-          type: "4",
-          area: "r",
-          rate: 1
-        },
-        o: {
-          date: "e",
-          name: "r",
-          type: "4",
-          area: "r",
-          rate: 1
-        },
-
-      }
+      top :{}
     };
   },
   created() {},
   mounted() {
+    var vm = this;
     this.__init();
+    this.$http.get('http://172.21.231.224:666/getMovie?page=1', {
+    params: {
+    }
+    })
+    .then(function (response) {
+      var arr = response.data.data["电影列表"];
+      vm.top = arr ;
+
+      //console.log(arr);
+    })
+    .catch(function (response) {
+      //错误处理 比如出现一个蒙层显示网络错误
+      console.log(response);
+    });
   },
   methods: {
     __init() {
