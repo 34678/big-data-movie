@@ -29,7 +29,7 @@
           <div class="container large">
             <div class="pagination">
               <ul>
-                <li v-for="n in totalPage">
+                <li v-bind:class="active(n)" v-on:click="getList(n)" v-for="n in totalPage">
                   <a>{{n}}</a>
                 </li>
               </ul>
@@ -135,203 +135,187 @@ export default {
         document.getElementById("divScreenCanvas")
       );
       myChart.setOption(this.option);
+    },
+    active(n){
+      if(n===this.page){
+        return "first active show";
+      }else if(n<(this.page +8)&&(n>this.page)){
+        return "show";
+      }else if(n==(this.page +8)){
+        return "show last";
+      }else{
+        return "";
+      }
+    },
+    getList(n){
+      var vm = this;
+      this.$http.get('http://172.21.231.224:666/getMovie?page='+ n , {
+      params: {
+      }
+      })
+      .then(function (response) {
+      var arr = response.data.data["电影列表"];
+      vm.top = arr ;
+      vm.page = n;
+      /* vm.refresh(); */
+      //console.log(arr);
+      })
+      .catch(function (response) {
+      //错误处理 比如出现一个蒙层显示网络错误
+      console.log(response);
+      });
     }
   }
 };
 </script>
 
+
 <style scoped>
 #container {
-  overflow: hidden;
-  width: 90%;
-  margin: 0 auto;
-  margin-top: 20px;
+overflow: hidden;
+width: 90%;
+margin: 0 auto;
+margin-top: 20px;
 }
 .mian_left {
-  width: 268px;
-  border: 1px solid #dadada;
-  float: left;
-  text-align: center;
-  height: 602px;
+width: 268px;
+border: 1px solid #dadada;
+float: left;
+text-align: center;
+height: 602px;
 }
 .mian_left h1 {
-  color: #109bee;
-  font-size: 16px;
-  font-weight: bold;
-  width: 86%;
-  height: 40px;
-  line-height: 40px;
-  margin-left: 12px;
-  border-bottom: 1px solid #dadada;
-  padding-left: 12px;
-  text-align: left;
+color: #109bee;
+font-size: 16px;
+font-weight: bold;
+width: 86%;
+height: 40px;
+line-height: 40px;
+margin-left: 12px;
+border-bottom: 1px solid #dadada;
+padding-left: 12px;
+text-align: left;
 }
 .mian_right h1 {
-  color: #109bee;
-  font-size: 16px;
-  font-weight: bold;
-  height: 40px;
-  line-height: 40px;
-  margin-left: 12px;
-  margin-right: 12px;
-  border-bottom: 1px solid #dadada;
-  padding-left: 12px;
-  text-align: left;
+color: #109bee;
+font-size: 16px;
+font-weight: bold;
+height: 40px;
+line-height: 40px;
+margin-left: 12px;
+margin-right: 12px;
+border-bottom: 1px solid #dadada;
+padding-left: 12px;
+text-align: left;
 }
 #divScreenCanvas {
-  width: 260px;
-  height: 532px;
-  background-color: rgba(0, 0, 0, 0);
+width: 260px;
+height: 532px;
+background-color: rgba(0, 0, 0, 0);
 }
 .mian_center {
-  width: 536px;
-  border: 1px solid #dadada;
-  float: left;
-  margin-left: 28px;
-  height: 602px;
-      overflow: scroll;
+width: 536px;
+border: 1px solid #dadada;
+float: left;
+margin-left: 28px;
+height: 602px;
+overflow: scroll;
 }
 .mian_center table {
-  margin-left: 25px;
-  text-align: center;
-  width: 90%;
+margin-left: 25px;
+text-align: center;
+width: 90%;
 }
 table {
-  border-collapse: collapse;
-  border-spacing: 0;
+border-collapse: collapse;
+border-spacing: 0;
 }
 .mian_center table tr {
-  border-bottom: 1px dashed #dadada;
-  height: 40px;
-  line-height: 42px;
-  color: #333;
-  font-size: 14px;
+border-bottom: 1px dashed #dadada;
+height: 40px;
+line-height: 42px;
+color: #333;
+font-size: 14px;
 }
 .mian_center table tr td {
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  max-width: 119px;
-  overflow: hidden;
+text-overflow: ellipsis;
+white-space: nowrap;
+max-width: 119px;
+overflow: hidden;
 }
 .mian_right {
-    width: 149px;
-    border: 1px solid #dadada;
-    float: right;
-    height: 602px;
-    background: #8080801c;
+width: 149px;
+border: 1px solid #dadada;
+float: right;
+height: 602px;
+background: #8080801c;
 }
 /* 分页样式 */
 .container {
-  background: #fdfdfd;
-  padding: 1rem;
-  margin: 3rem auto;
-  border-radius: 0.2rem;
-  counter-reset: pagination;
-  text-align: center;
+background: #fdfdfd;
+padding: 1rem;
+margin: 3rem auto;
+border-radius: 0.2rem;
+counter-reset: pagination;
+text-align: center;
 }
 .container:after {
-  clear: both;
-  content: "";
-  display: table;
+clear: both;
+content: "";
+display: table;
 }
 .container ul {
-  width: 100%;
-}
-
-.large {
- /*  width: 45rem; */
+width: 100%;
 }
 
 .pagination ul,
 li {
-  list-style: none;
-  display: inline;
-  padding-left: 0px;
+list-style: none;
+display: inline;
+padding-left: 0px;
 }
 
 .pagination li {
-  counter-increment: pagination;
+counter-increment: pagination;
 }
 .pagination li:hover a {
-  color: #fdfdfd;
-  background-color:  #2c9ef3;
-  border: solid 1px  #2c9ef3;
+color: #fdfdfd;
+background-color: #2c9ef3;
+border: solid 1px #2c9ef3;
 }
 .pagination li.active a {
-  color: #fdfdfd;
-  background-color: #2c9ef3;
-  border: solid 1px #2c9ef3;
+color: #fdfdfd;
+background-color: #2c9ef3;
+border: solid 1px #2c9ef3;
 }
-
-.pagination li:first-child a:after {
-  content: "<";
-}
-
 .pagination li:nth-child(2) {
-  counter-reset: pagination;
+counter-reset: pagination;
 }
 
 .pagination li:last-child a:after {
-  content: ">";
+content: ">";
 }
 .pagination li a {
-  border: solid 1px #d6d6d6;
-  border-radius: 0.2rem;
-  color: #7d7d7d;
-  text-decoration: none;
-  text-transform: uppercase;
-  display: inline-block;
-  text-align: center;
-  padding: 0.5rem 0.9rem;
+border: solid 1px #d6d6d6;
+border-radius: 0.2rem;
+color: #7d7d7d;
+text-decoration: none;
+text-transform: uppercase;
+display: inline-block;
+text-align: center;
+padding: 0.5rem 0.9rem;
 }
-.pagination li a:after {
-  /* content: " " counter(pagination) " "; */
-}
-
 .large li a {
-  display: none;
+display: none;
 }
-.large li:first-child a {
-  display: inline-block;
+.show a{
+display: inline-block!important;
 }
-.large li:first-child a:after {
-  content: "<";
+.last a:after {
+content: ">";
 }
-.large li:nth-child(2) a {
-  display: inline-block;
-}
-.large li:nth-child(3) a {
-  display: inline-block;
-}
-.large li:nth-child(4) a {
-  display: inline-block;
-}
-.large li:nth-child(5) a {
-  display: inline-block;
-}
-/* .large li:nth-child(6) a {
-  display: inline-block;
-} */
-/* .large li:nth-child(7) a {
-  display: inline-block;
-}
-.large li:nth-child(8) a {
-  display: inline-block;
-} */
-.large li:last-child a {
-  display: inline-block;
-}
-.large li:last-child a:after {
-  content: ">";
-}
-.large li:nth-last-child(2) a {
-  display: inline-block;
-}
-.large li:nth-last-child(3) {
-  display: inline-block;
-}
-.large li:nth-last-child(3):after {
-  padding: 0 1rem;
-  content: "...";
+.first a:after {
+content: "<";
 }
 </style>
+

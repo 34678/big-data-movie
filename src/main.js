@@ -8,7 +8,12 @@ import './common/css/share.css'
 import echarts from 'echarts'
 Vue.prototype.$echarts = echarts 
 import axios from 'axios'
+
 Vue.prototype.$http = axios
+import pagination from 'pagination'
+Vue.prototype.$pagination = pagination
+import jquery from 'jquery'
+Vue.prototype.$ = jquery
 Vue.config.productionTip = false
 
 
