@@ -60,6 +60,7 @@
 </template>
 
 <script>
+import {mapGetters, mapMutations, mapActions} from 'vuex'
 export default {
   data() {
     return {
@@ -125,6 +126,11 @@ export default {
       top :{},
       reco:{}
     };
+  },
+  computed:{
+    ...mapGetters([
+      'detail'
+    ])
   },
   created() {},
   mounted() {
@@ -219,13 +225,18 @@ export default {
       .then(function (response) {
       var arr = response.data.data;
       //跳到详情页 并且传参数
+      vm.setdetail(arr);
+      vm.$router.push('/Detail');
       })
       .catch(function (response) {
       //错误处理 比如出现一个蒙层显示网络错误
       console.log(response);
       });
-    }
-  }
+    },
+    ...mapMutations({
+      setdetail: 'SET_MOVIE_DETAIL',
+    }),
+  },
 };
 </script>
 

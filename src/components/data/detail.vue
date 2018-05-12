@@ -4,81 +4,33 @@
         <div class="subject clearfix">
             <div id="mainpic" class="">
                 <a class="nbgnbg" href="https://movie.douban.com/subject/26430636/photos?type=R" title="点击看更多海报">
-                    <img src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2516079193.webp" title="点击看更多海报" alt="Rampage" rel="v:image">
+                    <img v-bind:src= "'http://193.112.138.190:666/'+ detail.pic_path"  title="点击看更多海报" alt="Rampage" rel="v:image">
                 </a>
             </div>
             <div id="info">
                 <span>
-                    <span class="pl">导演</span>:
-                    <span class="attrs">
-                        <a href="/celebrity/1317388/" rel="v:directedBy">布拉德·佩顿</a>
-                    </span>
+                    <span class="pl">{{detail.director}}</span>:
                 </span>
                 <br>
                 <span class="actor">
                     <span class="pl">主演</span>:
                     <span class="attrs">
-                        <span>
-                            <a href="/celebrity/1044707/" rel="v:starring">道恩·强森</a> / </span>
-                        <span>
-                            <a href="/celebrity/1049542/" rel="v:starring">娜奥米·哈里斯</a> / </span>
-                        <span>
-                            <a href="/celebrity/1044708/" rel="v:starring">杰弗里·迪恩·摩根</a> / </span>
-                        <span>
-                            <a href="/celebrity/1058055/" rel="v:starring">玛琳·阿克曼</a> / </span>
-                        <span>
-                            <a href="/celebrity/1344101/" rel="v:starring">杰克·莱西</a> / </span>
-                        <span style="display: none;">
-                            <a href="/celebrity/1013768/" rel="v:starring">乔·曼根尼罗</a> / </span>
-                        <span style="display: none;">
-                            <a href="/celebrity/1002691/" rel="v:starring">玛丽·谢尔顿</a> / </span>
-                        <span style="display: none;">
-                            <a href="/celebrity/1321106/" rel="v:starring">P·J·伯恩</a> / </span>
-                        <span style="display: none;">
-                            <a href="/celebrity/1237330/" rel="v:starring">德米垂斯·格罗斯</a> / </span>
-                        <span style="display: none;">
-                            <a href="/celebrity/1321661/" rel="v:starring">杰克·奎德</a> / </span>
-                        <span style="display: none;">
-                            <a href="/celebrity/1349378/" rel="v:starring">布里安·希尔</a> / </span>
-                        <span style="display: none;">
-                            <a href="/celebrity/1326994/" rel="v:starring">马特·杰拉德</a> / </span>
-                        <span style="display: none;">
-                            <a href="/celebrity/1000192/" rel="v:starring">李威尹</a> / </span>
-                        <span style="display: none;">
-                            <a href="/celebrity/1253994/" rel="v:starring">尤里亚·费伯</a> / </span>
-                        <span style="display: none;">
-                            <a href="/celebrity/1391454/" rel="v:starring">布鲁斯·布莱克希尔</a> / </span>
-                        <span style="display: none;">
-                            <a href="/celebrity/1380780/" rel="v:starring">杰森·莱尔斯</a> / </span>
-                        <span style="display: none;">
-                            <a href="/celebrity/1391455/" rel="v:starring">马克·威尔斯</a> / </span>
-                        <span style="display: none;">
-                            <a href="/celebrity/1391456/" rel="v:starring">阿莉莎·布鲁克</a> / </span>
-                        <span style="display: none;">
-                            <a href="/celebrity/1314906/" rel="v:starring">亚当·希泰凯尔</a> / </span>
-                        <span style="display: none;">
-                            <a href="/celebrity/1019215/" rel="v:starring">加里·维克斯</a> / </span>
-                        <span style="display: none;">
-                            <a href="/celebrity/1251111/" rel="v:starring">阿诺德·陈</a>
-                        </span>
-                        <a href="javascript:;" class="more-actor" title="更多主演">更多...</a>
+                     {{detail.actor}}
                     </span>
                 </span>
                 <br>
                 <span class="pl">类型:</span>
-                <span property="v:genre">动作</span> /
-                <span property="v:genre">科幻</span> /
-                <span property="v:genre">冒险</span>
+                {{detail.type}}
                 <br>
-                <span class="pl">制片国家/地区:</span> 美国
+                <span class="pl">制片国家/地区:</span> {{detail.region}}
                 <br>
-                <span class="pl">语言:</span> 英语
+                <span class="pl">语言:</span> {{detail.language}}
                 <br>
                 <span class="pl">上映日期:</span>
-                <span property="v:initialReleaseDate" content="2018-04-13(美国/中国大陆)">2018-04-13(美国/中国大陆)</span>
+                <span property="v:initialReleaseDate" content="2018-04-13(美国/中国大陆)">{{detail.release_date}}</span>
                 <br>
                 <span class="pl">片长:</span>
-                <span property="v:runtime" content="107">107分钟</span>
+                <span property="v:runtime" content="107">{{detail.duration}}分钟</span>
             </div>
         </div>
         <div id="interest_sectl">
@@ -167,7 +119,14 @@
 
 <script>
 import '../../common/css/douban.css'
-export default {};
+import {mapGetters} from 'vuex'
+export default {
+  computed: {
+    ...mapGetters([
+      'detail'
+    ])
+  },
+};
 </script>
 
 <style scoped>

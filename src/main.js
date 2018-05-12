@@ -16,11 +16,12 @@ import jquery from 'jquery'
 Vue.prototype.$ = jquery
 Vue.config.productionTip = false
 
-
+import store from './store/index.js'
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })
