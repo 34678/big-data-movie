@@ -16,13 +16,16 @@
                   <td style=" font-weight: bold; color: #000000; ">影片类别</td>
                   <td style=" font-weight: bold; color: #000000; ">地区</td>
                   <td style=" font-weight: bold; color: #000000; ">电影排名</td>
+                  <td style=" font-weight: bold; color: #000000; ">猜你喜欢</td>
               </tr>
-              <tr v-for="item in top" v-on:click="getReco(item.movie_id)" class="trtop">
+              <tr v-for="item in top" v-bind:data-id="item.movie_id"  class="trtop">
                   <td>{{item.release_date}}</td>
-                  <td>{{item.movie_name}}</td>
+                  <td v-on:click="gotoDetail(item.movie_id)">{{item.movie_name}}</td>
                   <td>{{item.type}}</td>
                   <td>{{item.region}}</td>
                   <td>{{item.movie_id}}</td>
+                  <td v-on:click="getReco(item.movie_id)"><img style="width:30px;height：30px;" src="../common/images/爱心.png">
+                  </td>
               </tr>
           </tbody>
         </table>
@@ -43,10 +46,10 @@
     <div class="recomand">
       <span>猜你喜欢</span>
       <ul>
-        <li v-for="item in reco">
+        <li v-bind:data-id="item.movie_id" v-for="item in reco">
           <img v-bind:src= "'http://193.112.138.190:666/'+ item.pic_path" >
           <div class="recomand__div">
-            <div>{{item.movie_name}}</div>
+            <div v-on:click="gotoDetail(item.movie_id)">{{item.movie_name}}</div>
             <div>{{item.type}}</div>
           </div>
         </li>
@@ -206,6 +209,21 @@ export default {
     hideLike(){
       var ele = document.getElementsByClassName('recomand')[0];
       ele.style.display = "none";
+    },
+    gotoDetail(id){
+      var vm = this;
+      this.$http.get('http://193.112.138.190:666/getSingleMovie?movie_id='+ id , {
+      params: {
+      }
+      })
+      .then(function (response) {
+      var arr = response.data.data;
+      //跳到详情页 并且传参数
+      })
+      .catch(function (response) {
+      //错误处理 比如出现一个蒙层显示网络错误
+      console.log(response);
+      });
     }
   }
 };
@@ -213,6 +231,9 @@ export default {
 
 
 <style scoped>
+#warpper{
+  width:1268px;
+}
 #container {
 overflow: hidden;
 width: 90%;
@@ -256,7 +277,7 @@ height: 532px;
 background-color: rgba(0, 0, 0, 0);
 }
 .mian_center {
-width: 536px;
+width: 664px;
 border: 1px solid #dadada;
 float: left;
 margin-left: 28px;
