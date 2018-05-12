@@ -1,5 +1,5 @@
 <template>
-  <div id="wrapper">
+  <div id="wrapper" v-on:click="hideLike()">
     <div id="container">
     <div class="mian_left">
       <h1>2018-5全国票房统计</h1>
@@ -17,7 +17,7 @@
                   <td style=" font-weight: bold; color: #000000; ">地区</td>
                   <td style=" font-weight: bold; color: #000000; ">电影排名</td>
               </tr>
-              <tr v-for="item in top" onclick="gotom(this.id)" class="trtop">
+              <tr v-for="item in top" v-on:click="getReco(item.movie_id)" class="trtop">
                   <td>{{item.release_date}}</td>
                   <td>{{item.movie_name}}</td>
                   <td>{{item.type}}</td>
@@ -39,6 +39,18 @@
     </div>
     <div class="mian_right">
       <h1>网站信息</h1>
+    </div>
+    <div class="recomand">
+      <span>猜你喜欢</span>
+      <ul>
+        <li v-for="item in reco">
+          <img v-bind:src= "'http://193.112.138.190:666/'+ item.pic_path" >
+          <div class="recomand__div">
+            <div>{{item.movie_name}}</div>
+            <div>{{item.type}}</div>
+          </div>
+        </li>
+        </ul>
     </div>
     </div>
   </div>
@@ -107,14 +119,15 @@ export default {
       },
       page: 1,
       totalPage: 17,
-      top :{}
+      top :{},
+      reco:{}
     };
   },
   created() {},
   mounted() {
     var vm = this;
     this.__init();
-    this.$http.get('http://172.21.231.224:666/getMovie?page=1', {
+    this.$http.get('http://193.112.138.190:666/getMovie?page=1', {
     params: {
     }
     })
@@ -137,11 +150,15 @@ export default {
       myChart.setOption(this.option);
     },
     active(n){
+      var tmp = ((this.page-4)<1)?1:(this.page-4)
       if(n===this.page){
-        return "first active show";
-      }else if(n<(this.page +8)&&(n>this.page)){
+          return " active show";
+      }
+      else if((n===tmp)){
+        return "first show";
+      }else if(n<(this.page +3)&&(n>this.page-4)){
         return "show";
-      }else if(n==(this.page +8)){
+      }else if(n==(this.page +3)){
         return "show last";
       }else{
         return "";
@@ -149,7 +166,7 @@ export default {
     },
     getList(n){
       var vm = this;
-      this.$http.get('http://172.21.231.224:666/getMovie?page='+ n , {
+      this.$http.get('http://193.112.138.190:666/getMovie?page='+ n , {
       params: {
       }
       })
@@ -164,6 +181,31 @@ export default {
       //错误处理 比如出现一个蒙层显示网络错误
       console.log(response);
       });
+    },
+    getReco(id){
+      var vm = this;
+      var ele = document.getElementsByClassName('recomand')[0];
+      ele.style.display = "none";
+      this.$http.get('http://193.112.138.190:666/recomend?movie_id='+ id , {
+      params: {
+      }
+      })
+      .then(function (response) {
+      var arr = response.data.data;
+      console.log(arr);
+      vm.reco = arr ;
+      ele.style.display = "block";
+      /* vm.refresh(); */
+      //console.log(arr);
+      })
+      .catch(function (response) {
+      //错误处理 比如出现一个蒙层显示网络错误
+      console.log(response);
+      });
+    },
+    hideLike(){
+      var ele = document.getElementsByClassName('recomand')[0];
+      ele.style.display = "none";
     }
   }
 };
@@ -316,6 +358,34 @@ content: ">";
 }
 .first a:after {
 content: "<";
+}
+/* --- */
+.recomand{
+  display:none;
+  padding-top: 30px;
+    color:white;
+    width: 300px;
+    position: absolute;
+    background: #333333ab;
+    height: 600px;
+    overflow: scroll;
+    border-radius: 30px;
+    left: 78%;
+}
+.recomand li{
+  padding: 10px;
+  display: block;
+}
+.recomand img{
+  width: 84px;
+}
+.recomand__div{
+display: inline-block;
+    width: 137px;
+}
+::-webkit-scrollbar {
+width: 1px;
+height: 1px;
 }
 </style>
 
