@@ -26,7 +26,7 @@
                 <br>
                 <span class="pl">语言:</span> {{detail.language}}
                 <br>
-                <span class="pl">上映日期:</span>
+                <span class="pl">上映时间:</span>
                 <span property="v:initialReleaseDate" content="2018-04-13(美国/中国大陆)">{{detail.release_date}}</span>
                 <br>
                 <span class="pl">片长:</span>
@@ -45,13 +45,13 @@
                     </div>
                 </div>
                 <div class="rating_self clearfix" typeof="v:Rating">
-                    <strong class="ll rating_num" property="v:average">6.7</strong>
+                    <strong class="ll rating_num" property="v:average">{{detail.movie_score}}</strong>
                     <span property="v:best" content="10.0"></span>
                     <div class="rating_right ">
                         <div class="ll bigstar bigstar35"></div>
                         <div class="rating_sum">
                             <a href="collections" class="rating_people">
-                                <span property="v:votes">50171</span>人评价</a>
+                                <span property="v:votes">{{detail.score_num}}</span>人评价</a>
                         </div>
                     </div>
                 </div>
@@ -60,24 +60,24 @@
                         <span class="stars5 starstop" title="力荐">
                             5星
                         </span>
-                        <div class="power" style="width:9px"></div>
-                        <span class="rating_per">7.9%</span>
+                        <div class="power" v-bind:style='{width:detail.five_star*100 + "px"}'></div>
+                        <span class="rating_per">{{(detail.five_star*100).toFixed(2)}}%</span>
                         <br>
                     </div>
                     <div class="item">
                         <span class="stars4 starstop" title="推荐">
                             4星
                         </span>
-                        <div class="power" style="width:39px"></div>
-                        <span class="rating_per">31.1%</span>
+                        <div class="power" v-bind:style='{width:detail.four_star*100 + "px"}'></div>
+                        <span class="rating_per">{{(detail.four_star*100).toFixed(2)}}%</span>
                         <br>
                     </div>
                     <div class="item">
                         <span class="stars3 starstop" title="还行">
                             3星
                         </span>
-                        <div class="power" style="width:64px"></div>
-                        <span class="rating_per">51.0%</span>
+                        <div class="power" v-bind:style='{width:detail.three_star*100 + "px"}'></div>
+                        <span class="rating_per">{{(detail.three_star*100).toFixed(2)}}%</span>
                         <br>
                     </div>
                     <div class="item">
@@ -85,8 +85,8 @@
                         <span class="stars2 starstop" title="较差">
                             2星
                         </span>
-                        <div class="power" style="width:11px"></div>
-                        <span class="rating_per">8.8%</span>
+                        <div class="power" v-bind:style='{width:detail.two_star*100 + "px"}'></div>
+                        <span class="rating_per">{{(detail.two_star*100).toFixed(2)}}%</span>
                         <br>
                     </div>
                     <div class="item">
@@ -94,8 +94,8 @@
                         <span class="stars1 starstop" title="很差">
                             1星
                         </span>
-                        <div class="power" style="width:1px"></div>
-                        <span class="rating_per">1.1%</span>
+                        <div class="power" v-bind:style='{width:detail.one_star*100 + "px"}'></div>
+                        <span class="rating_per">{{(detail.one_star*100).toFixed(2)}}%</span>
                         <br>
                     </div>
                 </div>
@@ -105,12 +105,12 @@
     <div class="related-info" style="margin-bottom:-10px;">
     <a name="intro"></a>
     <h2>
-        <i class="">狂暴巨兽的剧情简介</i>
+        <i class="">{{detail.movie_name}}的剧情简介</i>
         · · · · · ·
     </h2>
     <div class="indent" id="link-report">
         <span property="v:summary" class="">
-            巨石强森饰演的灵长类动物学家一直与人类保持距离, 却跟极为聪明的银背大猩猩乔治有着深厚的感情。但是一次基因实验出错, 让这只温驯的大猩猩变成狂怒难驯的庞然巨兽。更可怕的是, 其他动物也发生了同样基因异变。他必须阻止这场全球性的灾难, 更重要是要拯救他的好友乔治。
+            {{detail.summary}}
         </span>
     </div>
 </div>
@@ -130,6 +130,11 @@ export default {
 </script>
 
 <style scoped>
+#interest_sectl .rating_self {
+    padding: 0;
+    line-height: 2;
+    display: block;
+}
 .subjectwrap {
     width: 800px;
     margin: 0 auto;
@@ -158,5 +163,8 @@ export default {
     margin: 0 auto;
     text-align: left;
     line-height: 25px;
+}
+#interest_sectl{
+        width: 215px;
 }
 </style>

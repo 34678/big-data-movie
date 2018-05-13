@@ -242,8 +242,8 @@ export default {
 
 
 <style scoped>
-#warpper{
-  width:1268px;
+#wrapper{
+  width:1272px!important;
 }
 #container {
 overflow: hidden;

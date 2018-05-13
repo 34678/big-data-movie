@@ -3,7 +3,7 @@
     <router-link tag="div" v-on:click.native="hide" class="tab__item" to="/Data">
       <span class="tab-link">数据概览</span>
     </router-link>
-    <router-link tag="div" v-on:click.native="hide" class="tab__item" to="/Detail">
+    <router-link style="display:none" tag="div" v-on:click.native="hide" class="tab__item" to="/Detail">
       <span class="tab-link">详情页</span>
     </router-link>
     <router-link tag="div"  v-on:click.native="show" class="tab__item" to="/ScoreAnalysis">

@@ -1,7 +1,11 @@
 <template>
 <div id="wrapper">
   <another-tab :active4=true></another-tab>
-  <selector></selector>
+  <!-- <selector></selector> -->
+    <select id="type">
+      <option>类型</option>
+      <option>地区</option>
+    </select>
   <div id="chart"></div>
 </div>
 </template>
@@ -54,5 +58,10 @@ export default {
     height: 607px!important;
     width: 800px;
     margin: 0 auto;
+}
+select{
+    float: left;
+    margin-left: 173px;
+    height: 36px;
 }
 </style>
