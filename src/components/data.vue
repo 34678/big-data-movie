@@ -419,5 +419,8 @@ display: inline-block;
 width: 1px;
 height: 1px;
 }
+.recomand__div div:first-child{
+  cursor: pointer;
+}
 </style>
 
