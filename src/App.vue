@@ -28,7 +28,7 @@ export default {
   color: #2c3e50;
 }
 .tab {
-  width: 219px;
+  width: 262px;
   display: inline-block;
   float: left;
   height: 1000px;

@@ -1,6 +1,5 @@
 <template>
 <div id="wrapper">
-  <another-tab :active1=true></another-tab>
   <div id="chart"></div>
 </div>
 </template>
@@ -15,19 +14,21 @@ export default {
               text: '电影时长与评分关系',
               subtext: '豆瓣大数据'
           },
-          xAxis: {
-              type: 'value',
-              name : '评分'
-            
-          },
+          xAxis:
+            {
+                type: 'category',
+                data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                name:'时长',
+                axisLabel:{  
+                /* interval: 0   */
+                },  
+            }, 
           yAxis: 
           {
-              type: 'category',
-              data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-              name:'时长',
-              axisLabel:{  
-                interval: 0  
-              },  
+              type: 'value',
+              name : '评分',
+              min: 5
+            
           },
           series: [{
               data: [820, 932, 901, 934, 1290, 1330, 1320],
@@ -58,11 +59,19 @@ export default {
             /* console.log(arr); */
             var x = [];
             var y = [];
+            var tmpx = [];
+            var tmpy = [];
+            var count = 1;
+            var countshowing_time =0;
+            // 30个一组取平均值
             for(var n in arr){
-                x.push(arr[n].showing_time);
-                y.push(arr[n].evaluation_scope);
+           
+            x.push(arr[n].showing_time);
+            y.push(arr[n].evaluation_scope);
+                 
+ 
             }
-            vm.option.yAxis.data = x;
+            vm.option.xAxis.data = x;
             vm.option.series[0].data = y;
             //重新渲染echrts
             var myChart = vm.$echarts.init(
@@ -87,10 +96,11 @@ export default {
 <style scoped>
 #wrapper{
       overflow: scroll;
+      width: 1024px!important;
 }
 #chart{
-    height: 3000px!important;
-    width: 600px;
+       width: 1000px!important;
+    height: 745px!important;
     margin: 0 auto;
 }
 ::-webkit-scrollbar {

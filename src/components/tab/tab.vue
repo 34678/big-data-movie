@@ -10,10 +10,12 @@
       <span class="tab-link" >评分分析</span>
     </router-link>
     <div class="tab__wrapper" ref="tab__wrapper" >
-      <router-link tag="div" class="tab__item-sub" to="/ScoreAnalysis/Myarea">地区分析</router-link>
-      <router-link tag="div" class="tab__item-sub" to="/ScoreAnalysis/Mytype">类型分析</router-link>
-      <router-link tag="div" class="tab__item-sub" to="/ScoreAnalysis/highScore">用户分析</router-link>
       <router-link tag="div" class="tab__item-sub" to="/ScoreAnalysis/Duration">时长分析</router-link>
+      <router-link tag="div" class="tab__item-sub" to="/ScoreAnalysis/User">用户喜好分析</router-link>
+      <router-link tag="div" class="tab__item-sub" to="/ScoreAnalysis/highScoreAype">高分地区分析</router-link>
+      <router-link tag="div" class="tab__item-sub" to="/ScoreAnalysis/highScoreType">高分类型分析</router-link>
+      <router-link tag="div" class="tab__item-sub" to="/ScoreAnalysis/areaChange">年度地区分析</router-link>
+      <router-link tag="div" class="tab__item-sub" to="/ScoreAnalysis/typeChange">年度类型分析</router-link>
     </div>
   </div>
 </template>
