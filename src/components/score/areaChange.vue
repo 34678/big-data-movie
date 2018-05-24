@@ -25,7 +25,7 @@ export default {
         },
         xAxis: {
           type: "category",
-          data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+          data: [1,2,3,4,5,6,7],
           name: "年份",
           axisLabel: {
                /* interval: 0 */
@@ -110,8 +110,8 @@ export default {
                 arr3=[];
             for(var n in tmpArr){
               var newTable = tmpArr[n].split('-');
-              arr1.push(newTable[0]);
-              arr2.push(newTable[1]);
+              arr1.push(Number(newTable[0]));
+              arr2.push(Number(newTable[1]));
             }
             for(var n in tmpArr2){
                 var newTable2 = tmpArr2[n].split('-');
@@ -128,8 +128,8 @@ export default {
                         arr2=[];
                     for(var n in tmpArr){
                       var newTable = tmpArr[n].split('-');
-                      arr1.push(newTable[0]);
-                      arr2.push(newTable[1]);
+                      arr1.push(Number(newTable[0]));
+                      arr2.push(Number(newTable[1]));
                     }
                     for(var n in vm.tmp3){
                         if(vm.tmp3[n].region == area){
@@ -145,10 +145,12 @@ export default {
                     var myChart = vm.$echarts.init(
                     document.getElementById("chart")
                     );
+                    debugger;
                     console.log('arr3',arr3)
                     vm.option.xAxis.data = arr1;
+                    vm.option.series[1].data = arr2;
                     vm.option.series[0].data = arr3;
-                     vm.option.series[1].data = arr2;
+                     
                     myChart.setOption(vm.option);  
                 }
               }
@@ -158,10 +160,12 @@ export default {
             var myChart = vm.$echarts.init(
             document.getElementById("chart")
             );
+            debugger;
             vm.option.xAxis.data = arr1;
+            vm.option.series[1].data = arr2;
             vm.option.series[0].data = arr3;
             console.log('arr3',arr3)
-            vm.option.series[1].data = arr2;
+            
             myChart.setOption(vm.option);
         }));
 /*         this.$http.get('http://193.112.138.190:666/getRegionYearAnalysic')

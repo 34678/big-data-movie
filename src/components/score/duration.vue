@@ -20,7 +20,7 @@ export default {
                 data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
                 name:'时长',
                 axisLabel:{  
-                /* interval: 0   */
+                interval: 19
                 },  
             }, 
           yAxis: 

@@ -46,8 +46,8 @@
     <div class="recomand">
       <span>猜你喜欢</span>
       <ul>
-        <li v-bind:data-id="item.movie_id" v-for="item in reco">
-          <img v-bind:src= "'http://193.112.138.190:666/'+ item.pic_path" >
+        <li class="recomand_li" v-bind:data-id="item.movie_id" v-for="item in reco">
+          <img class="recomand__img" v-bind:src= "'http://193.112.138.190:666/'+ item.pic_path" >
           <div class="recomand__div">
             <div v-on:click="gotoDetail(item.movie_id)">{{item.movie_name}}</div>
             <div>{{item.type}}</div>
@@ -404,16 +404,27 @@ content: "<";
     border-radius: 30px;
     left: 78%;
 }
+.recomand span:first-child{
+      font-size: 24px;
+    font-weight: bold;
+}
 .recomand li{
   padding: 10px;
+  max-height: 148px;
   display: block;
 }
 .recomand img{
   width: 84px;
 }
+
+.recomand__img{
+  vertical-align: top;
+}
 .recomand__div{
-display: inline-block;
-    width: 137px;
+  display: inline-block;
+  width: 137px;
+  vertical-align: 50px;
+  line-height: 25px;
 }
 ::-webkit-scrollbar {
 width: 1px;

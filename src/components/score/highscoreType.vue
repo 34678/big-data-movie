@@ -36,7 +36,7 @@ export default {
             },
             series : [
                 {
-                    name: '地区',
+                    name: '类型',
                     type: 'pie',
                     radius : '55%',
                     center: ['40%', '50%'],
