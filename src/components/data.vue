@@ -64,67 +64,94 @@ import {mapGetters, mapMutations, mapActions} from 'vuex'
 export default {
   data() {
     return {
-      option: {
-        tooltip: {
-          trigger: "item",
-          formatter: "{a} <br/>{b}: {c} ({d}%)"
-        },
-        legend: {
-          orient: "horizontal",
-          x: "center",
-          data: [
-            "直接访问",
-            "邮件营销",
-            "联盟广告",
-            "视频广告",
-            "直接访问1",
-            "邮件营销2",
-            "联盟广告3",
-            "视频广告4",
-            "搜索引擎"
-          ]
-        },
-        series: [
-          {
-            name: "访问来源",
-            type: "pie",
-            radius: ["50%", "70%"],
-            avoidLabelOverlap: false,
+      test:[1,2,3,4,5,6,7,8],
+option : {
+  color: ['#3398DB'],
+    tooltip : {
+        trigger: 'axis',
+         formatter:function (params) { 
+            var type=["剧情","剧情","剧情","剧情","剧情","剧情","剧情","剧情","剧情","剧情","剧情","剧情","剧情","喜剧","动作","喜剧","剧情","爱情","剧情","剧情"];
+            var score_num = ["1020783","957044","855673","817080","769531","764730","756700","745722","678826","658787","642189","636262","608239","587838","566676","562675","562664","561031","555875","534779"];
+            var score = ["9.6","9.4","9.3","9.4","9.2","9.3","9.3","9.5","8.7","9.2","9","8.9","8.9","9.2","8.6","9.2","9.2","9.3","8.9"]
+            var index = params[0].dataIndex;
+            return "类型："+type[index]+"<br>评分人数："+score_num[index]+"<br>分数："+score[index]
+            /* var cloudid = mydata[param.dataIndex];
+            return cloudid;  */
+             
+          } ,
+    },
+/*     grid: {
+        left: '0%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    }, */
+    xAxis : [
+        {
+            type : 'value',
+            show:false,
+            splitLine:{  
+      　　　　  show:false  
+        　　}  ,
+            min:6,
+            max:10,
+            
+        }
+    ],
+    yAxis : [
+        {
+            type : 'category',
+            axisTick : {show: false},
+            show:false,
+            data : ['1',1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+            splitLine:{  
+      　　　　  show:false  
+        　　} ,
+            axisTick:{
+              length:0
+            },
+            axisLabel:{
+              /* lineHeight: 56,
+              fontSize:56, */
+            }
+        }
+    ],
+    series : [
+        {
+            name:'评分',
+            type:'bar',
             label: {
-              normal: {
-                show: false,
-                position: "center"
+                    show: true,
+                    position: 'inside',
+                formatter:function (params) { 
+                  var name =  ["肖申克的救赎","这个杀手不太冷 Léon","盗梦空间 Inception","阿甘正传 Forrest Gump","三傻大闹宝莱坞 3 Idiots","千与千寻 千と千尋の神隠し","泰坦尼克号 Titanic","霸王别姬","让子弹飞","海上钢琴师 ","少年派的奇幻漂流 Life of Pi","怦然心动 Flipped","当幸福来敲门","疯狂动物城 Zootopia","阿凡达 Avatar","星际穿越 Interstellar","机器人总动员 WALL·E","飞屋环游记 Up","楚门的世界 The Truman Show"];
+                  var index = params.dataIndex;
+                  console.log('index',params)
+                  return name[index];
+               },
+                /* align:'right' */
+            },
+            markPoint:{
+              itemStyle:{
+              borderColor:'white',
               },
-              emphasis: {
-                show: true,
-                textStyle: {
-                  fontSize: "0",
-                  fontWeight: "bold"
-                }
-              }
+               data : [
+                    {type : 'max', name: '最大值'},
+                    {type : 'min', name: '最小值'}
+                ]
             },
-            labelLine: {
-              normal: {
-                show: false
-              }
-            },
-            data: [
-              { value: 335, name: "直接访问" },
-              { value: 310, name: "邮件营销" },
-              { value: 234, name: "联盟广告" },
-              { value: 135, name: "视频广告" },
-              { value: 335, name: "直接访问1" },
-              { value: 310, name: "邮件营销2" },
-              { value: 234, name: "联盟广告3" },
-              { value: 135, name: "视频广告4" }
-            ]
-          }
-        ]
-      },
+            barWidth : 23,
+            barCategoryGap:'80%',
+            barGap :'0%',
+            data:["9.6","9.4","9.3","9.4","9.2","9.3","9.3","9.5","8.7","9.2","9","8.9","8.9","9.2","8.6","9.2","9.2","9.3","8.9"]
+        },
+    ]
+},
       page: 1,
       totalPage: 17,
       top :{},
-      reco:{}
+      reco:{},
+      
     };
   },
   computed:{
@@ -242,8 +269,11 @@ export default {
 
 
 <style scoped>
+.header{
+  width:1640px;
+}
 #wrapper{
-  width:1272px!important;
+  width:1355px!important;
 }
 #container {
 overflow: hidden;
@@ -252,7 +282,8 @@ margin: 0 auto;
 margin-top: 20px;
 }
 .mian_left {
-width: 268px;
+  width:335px;
+/* width: 268px; */
 border: 1px solid #dadada;
 float: left;
 text-align: center;
@@ -283,8 +314,10 @@ padding-left: 12px;
 text-align: left;
 }
 #divScreenCanvas {
-width: 260px;
-height: 532px;
+      margin-top: -70px;
+  width: 335px;
+/* width: 260px; */
+height: 630px;
 background-color: rgba(0, 0, 0, 0);
 }
 .mian_center {

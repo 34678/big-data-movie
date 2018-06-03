@@ -9,52 +9,42 @@ export default {
   data() {
     return {
       option: {
-        title: {
-          text: "不同地区用户对不同类型电影的喜好",
-          subtext: "豆瓣大数据"
-        },
-        tooltip: {
-          trigger: "axis",
-          formatter: " {c0}"
-        },
-        xAxis: {
-          type: "category",
-          name: "地区"
-        },
-        yAxis: {
-          type: "category",
-          name: "类型"
-        },
-        series: [
-          {
-            symbolSize: 50,
-            data: [
-              [10.0, 8.04],
-              [8.0, 6.95],
-              [13.0, 7.58],
-              [9.0, 8.81],
-              [11.0, 8.33],
-              [14.0, 9.96],
-              [6.0, 7.24],
-              [4.0, 4.26],
-              [12.0, 10.84],
-              [7.0, 4.82],
-              [5.0, 5.68]
+         type:'map',
+                            data: [
+                        {
+                            name: '广东',
+                            value: Math.round(Math.random() * 1000),
+                            itemStyle: {
+                                normal: {
+                                    color: '#32cd32',
+                                    label: {
+                                        show: true,
+                                        textStyle: {
+                                            color: '#fff',
+                                            fontSize: 15
+                                        }
+                                    }
+                                },
+                                emphasis: { // 也是选中样式
+                                    borderWidth: 5,
+                                    borderColor: 'yellow',
+                                    color: '#cd5c5c',
+                                    label: {
+                                        show: false,
+                                        textStyle: {
+                                            color: 'blue'
+                                        }
+                                    }
+                                }
+                            }
+                }
             ],
-            type: "scatter",
-            itemStyle: {
-              normal: {
-                color: "#2ec7c9"
-              }
-            }
-          }
-        ]
       }
     };
   },
   mounted() {
     this.__init();
-    this.reqUser();
+    /* this.reqUser(); */
   },
   methods: {
     __init() {

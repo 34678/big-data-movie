@@ -21,7 +21,7 @@ export default {
         },
         tooltip: {
           trigger: "axis",
-          formatter: " {c0}"
+          formatter: " 评分：{c0};数量：{c1}"
         },
         xAxis: {
           type: "category",
@@ -34,24 +34,37 @@ export default {
         yAxis: [
           {
             type: "value",
-            name: "评分"
+            name: "评分",
+            min:0,
+            max:10,
+            axisLabel : {
+              formatter: '{value} 分'
+            }
           },
           {
             type: "value",
-            name: "数量"
+            name: "数量",
+            min:0,
+            max:600,
+            axisLabel : {
+              formatter: '{value}'
+            }
+        
           }
         ],
         series: [
           {
-              name:'评分',
+            name:'评分',
             data: [820, 932, 901, 934, 1290, 1330, 1320],
             type: "line"
           },
           {
-               name:'数量',
+            name:'数量',
             data: [820, 932, 901, 934, 1290, 1330, 1320],
             type: "bar",
-            barWidth : 8,
+            //设置对准哪边的坐标轴
+             yAxisIndex: 1,
+            barWidth : 2,
           }
         ]
       },
@@ -84,6 +97,8 @@ export default {
         this.$http.get('http://193.112.138.190:666/getRegionVSEvaluation')
         ])
         .then(this.$http.spread(function (response, score) {
+          console.log(response);
+          console.log(score);
             //对数量数据的处理
             var arr = response.data.data;
             var arranother = score.data.data;
@@ -96,7 +111,7 @@ export default {
             }
             // 根据地区名称下来框
             if(vm.$('#area').length == 0 ){
-              var text = '<select id="area" style="     border-radius: 10px;margin-top: 7px;   float: right;margin-right: 173px;height: 36px;">'
+              var text = '<select id="area" style="      padding-left: 54px;   border-radius: 10px;margin-top: 7px;   float: right;margin-right: 173px;height: 36px;">'
               for(var n in res){
                 text += "<option>"+ res[n] + "</option>";
               }
@@ -111,7 +126,7 @@ export default {
             for(var n in tmpArr){
               var newTable = tmpArr[n].split('-');
               arr1.push(Number(newTable[0]));
-              arr2.push(Number(newTable[1]));
+              arr2.push(Number(newTable[1])?Number(newTable[1]):0);
             }
             for(var n in tmpArr2){
                 var newTable2 = tmpArr2[n].split('-');
@@ -129,7 +144,7 @@ export default {
                     for(var n in tmpArr){
                       var newTable = tmpArr[n].split('-');
                       arr1.push(Number(newTable[0]));
-                      arr2.push(Number(newTable[1]));
+                      arr2.push(Number(newTable[1])?Number(newTable[1]):0);
                     }
                     for(var n in vm.tmp3){
                         if(vm.tmp3[n].region == area){
@@ -145,8 +160,14 @@ export default {
                     var myChart = vm.$echarts.init(
                     document.getElementById("chart")
                     );
-                    debugger;
+                    console.log('arr1',arr1)
+                    console.log('arr2',arr2)
                     console.log('arr3',arr3)
+                    var max = arr2[0];
+                    for (var i = 1; i < arr2.length; i++) {
+                      max =  Math.max(max, arr2[i]);
+                    }
+                    vm.option.yAxis[1].max = max+50;
                     vm.option.xAxis.data = arr1;
                     vm.option.series[1].data = arr2;
                     vm.option.series[0].data = arr3;
@@ -160,11 +181,17 @@ export default {
             var myChart = vm.$echarts.init(
             document.getElementById("chart")
             );
-            debugger;
+            var max = arr2[0];
+            for (var i = 1; i < arr2.length; i++) {
+              max =  Math.max(max, arr2[i]);
+            }
+            vm.option.yAxis[1].max = max+50;
             vm.option.xAxis.data = arr1;
             vm.option.series[1].data = arr2;
             vm.option.series[0].data = arr3;
-            console.log('arr3',arr3)
+                    console.log('arr1',arr1)
+                    console.log('arr2',arr2)
+                    console.log('arr3',arr3)
             
             myChart.setOption(vm.option);
         }));
