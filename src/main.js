@@ -13,6 +13,10 @@ import pagination from 'pagination'
 Vue.prototype.$pagination = pagination
 import jquery from 'jquery'
 Vue.prototype.$ = jquery
+
+/* import d3 from 'd3'
+Vue.prototype.$d3 = d3 */
+
 Vue.config.productionTip = false
 
 import store from './store/index.js'
