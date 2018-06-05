@@ -1,7 +1,7 @@
 <template>
 <div id="wrapper">
   <div id="tooltip"></div><!-- div to hold tooltip. -->
-<svg width="560" height="470" id="statesvg"></svg>
+<svg width="800" height="671" id="statesvg"></svg>
 </div>
 </template>
 
@@ -73,11 +73,11 @@ export default {
           }
 
           d3.select(id).selectAll(".state")
-            .data(uStatePaths).enter().append("path").attr("class","state").attr("d",function(d){ return d.d;}).attr("stroke","#000")
+            .data(uStatePaths).enter().append("path").attr("class","state").attr("d",function(d){ return d.d;}).attr("stroke","gray")
             .style("fill",function(d){ return data[d.id].color; })
             .on("mouseover", mouseOver).on("mouseout", mouseOut);
 
-            var w=600;
+            var w=800;
             var padding=40;
             //用一个变量存储标题和副标题的高度，如果没有标题什么的，就为0
             var head_height=padding;
@@ -86,7 +86,7 @@ export default {
             .text('全国用户喜好电影类型分布图')
             .attr("class","title")
             .attr("x",w/2)
-            .attr("y",head_height);
+            .attr("y",0);
         }
         vm.uStates=uStates;
       })();
@@ -107,7 +107,10 @@ export default {
       ['JXI', 'LIA', 'TIB', 'NMG', 'SHH', 'CHQ', 'XIN', 'SHD', 'HEN', 'GUD', 'GUI', 'BEJ', 'MAC', 'TAJ', 'HLJ', 'HEB', 'ZHJ', 'ANH', 'GXI', 'HAI', 'JIL', 'SHX', 'HUN', 'YUN', 'FUJ', 'HUB', 'SHA', 'HKG', 'QIH', 'GAN', 'JSU', 'SCH', 'NXA', 'TAI']
       .forEach(function(d){ 
         var low='aa';
-        sampleData[d]={low:low, color:d3.interpolate("#fff", '#0098e1')(Math.round(Math.random()))}; 
+        var colors = ['#3F51B5','#CFD8DC','#80CBC4','#FFCDD2','#FAFAFA','#43A047','#FF7043'];
+        var color =  Math.round(Math.random()*6);
+        console.log(color);
+        sampleData[d]={low:low, color:colors[color]}; 
         // d3.interpolate("#ffffcc", "#800026")(low/100)
       });
 	
@@ -154,6 +157,7 @@ export default {
 #wrapper {
   overflow: scroll;
   width: 1024px !important;
+      margin-top: 40px;
 }
 #chart {
   width: 1000px !important;

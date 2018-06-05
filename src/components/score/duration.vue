@@ -97,6 +97,7 @@ export default {
 #wrapper{
       overflow: scroll;
       width: 1024px!important;
+          margin-top: 20px;
 }
 #chart{
        width: 1000px!important;
@@ -107,4 +108,5 @@ export default {
 width: 1px;
 height: 1px;
 }
+ 
 </style>
