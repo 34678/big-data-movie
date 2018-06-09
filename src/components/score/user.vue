@@ -1,7 +1,12 @@
 <template>
 <div id="wrapper">
+  <div class="title" style="    font-size: 21px;
+    font-weight: bold;
+    margin-top: 37px;    text-align: left;
+    margin-left: 70px;">全国用户喜好电影类型分布图 </div>
   <div id="tooltip"></div><!-- div to hold tooltip. -->
-<svg width="800" height="671" id="statesvg"></svg>
+<svg width="800" height="671" id="statesvg" style="    margin-top: 24px;
+    margin-left: 167px;"></svg>
 </div>
 </template>
 
@@ -81,12 +86,12 @@ export default {
             var padding=40;
             //用一个变量存储标题和副标题的高度，如果没有标题什么的，就为0
             var head_height=padding;
-           d3.select(id).append("g")
+           /* d3.select(id).append("g")
             .append("text")
             .text('全国用户喜好电影类型分布图')
             .attr("class","title")
             .attr("x",w/2)
-            .attr("y",0);
+            .attr("y",10); */
         }
         vm.uStates=uStates;
       })();

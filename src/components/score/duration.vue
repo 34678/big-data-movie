@@ -100,9 +100,10 @@ export default {
           margin-top: 20px;
 }
 #chart{
-       width: 1000px!important;
-    height: 745px!important;
+    width: 1000px!important;
+    height: 599px!important;
     margin: 0 auto;
+    margin-top: 53px;
 }
 ::-webkit-scrollbar {
 width: 1px;
