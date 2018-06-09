@@ -10,7 +10,7 @@ export default {}
 </script>
 <style scoped lang="stylus" rel="stylesheet/stylus">
   .header
-    width: 1640px
+    width: 1685px
     position: relative
     height: 106px
     text-align: center

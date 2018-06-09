@@ -2,8 +2,9 @@
   <div id="wrapper" v-on:click="hideLike()">
     <div id="container">
     <div class="mian_left">
-      <h1>2018-5全国票房统计</h1>
+      <h1>最受欢迎电影排行榜</h1>
       <div id="divScreenCanvas"></div>
+      <div></div>
     </div>
     <div class="mian_center mian_left">
       <h1>豆瓣评分top250</h1>
@@ -40,8 +41,22 @@
           </div>
           </div>
     </div>
-    <div class="mian_right">
+    <div class="mian_right" style="    line-height: 39px;   
+    padding-left: 10px;">
       <h1>网站信息</h1>
+      <div style=" font-weight:bold;    margin-top: 90px;">作者信息</div>
+      <div style="color: #80808075;
+    line-height: 11px;
+    font-size: 10px;">(排名不分先后)</div>
+      <ul>
+        <li>何文栋</li><br>
+        <li>黄璟琳</li><br>
+        <li>许鋆莹</li>
+      </ul>
+      <div style="    color: #03A9F4;
+    font-size: 18px;font-weight:bold;">亲，喜欢请扫我哦</div>
+      <div><img style="    width: 100px;    display: block;
+    margin: 0 auto;" src="../assets/qrcode.jpg"></div>
     </div>
     <div class="recomand">
       <span>猜你喜欢</span>
@@ -93,8 +108,8 @@ option : {
             splitLine:{  
       　　　　  show:false  
         　　}  ,
-            min:6,
-            max:10,
+             min:0,
+            max:1520783
             
         }
     ],
@@ -103,7 +118,7 @@ option : {
             type : 'category',
             axisTick : {show: false},
             show:false,
-            data : ['1',1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+            data : [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
             splitLine:{  
       　　　　  show:false  
         　　} ,
@@ -113,38 +128,77 @@ option : {
             axisLabel:{
               /* lineHeight: 56,
               fontSize:56, */
-            }
+            },
+            inverse:true,
+        
         }
     ],
     series : [
         {
             name:'评分',
             type:'bar',
+            stack: '总量',
             label: {
                     show: true,
-                    position: 'inside',
+                    position: 'insideLeft',
+                    distance:50,
                 formatter:function (params) { 
-                  var name =  ["肖申克的救赎","这个杀手不太冷 Léon","盗梦空间 Inception","阿甘正传 Forrest Gump","三傻大闹宝莱坞 3 Idiots","千与千寻 千と千尋の神隠し","泰坦尼克号 Titanic","霸王别姬","让子弹飞","海上钢琴师 ","少年派的奇幻漂流 Life of Pi","怦然心动 Flipped","当幸福来敲门","疯狂动物城 Zootopia","阿凡达 Avatar","星际穿越 Interstellar","机器人总动员 WALL·E","飞屋环游记 Up","楚门的世界 The Truman Show"];
+                  var name =  ["肖申克的救赎","这个杀手不太冷","盗梦空间","阿甘正传","三傻大闹宝莱坞","千与千寻し","泰坦尼克号","霸王别姬","让子弹飞","海上钢琴师","少年派的奇幻漂流","怦然心动","当幸福来敲门","疯狂动物城","阿凡达","大话西游之大圣娶亲","星际穿越","机器人总动员","飞屋环游记","楚门的世界"];
+                  var num = [1020783,957044,855673,817080,769531,764730,756700,745722,678826,658787,642189,636262,608239,587838,566676,562675,562664,561031,555875,534779];
                   var index = params.dataIndex;
                   console.log('index',params)
-                  return name[index];
+                  return name[index] ;
                },
+               align:'center',
+               color:'white'
                 /* align:'right' */
             },
-            markPoint:{
+ 
+           /*  markPoint:{
               itemStyle:{
               borderColor:'white',
               },
+              
                data : [
-                    {type : 'max', name: '最大值'},
+                     {type : 'max', name: '最大值'},
                     {type : 'min', name: '最小值'}
+                    
                 ]
-            },
+            }, */
             barWidth : 23,
             barCategoryGap:'80%',
             barGap :'0%',
-            data:["9.6","9.4","9.3","9.4","9.2","9.3","9.3","9.5","8.7","9.2","9","8.9","8.9","9.2","8.6","9.2","9.2","9.3","8.9"]
+            data:[1020783,957044,855673,817080,769531,764730,756700,745722,678826,658787,642189,636262,608239,587838,566676,562675,562664,561031,555875,534779],
+           
         },
+        {
+          name:'aa',
+          type:'bar',
+          stack: '总量',
+          data:[1020783,957044,855673,817080,769531,764730,756700,745722,678826,658787,642189,636262,608239,587838,566676,562675,562664,561031,555875,534779],
+          itemStyle: {   
+            //通常情况下：
+            normal:{  
+      　　　　　　　　　　　　//每个柱子的颜色即为colorList数组里的每一项，如果柱子数目多于colorList的长度，则柱子颜色循环使用该数组
+                color:'#f8f9fe',
+            },
+          },
+            label: {
+                    show: true,
+                    position: 'insideLeft',
+                    distance:30,
+                formatter:function (params) { 
+                   
+                  var num = [1020783,957044,855673,817080,769531,764730,756700,745722,678826,658787,642189,636262,608239,587838,566676,562675,562664,561031,555875,534779];
+                  var index = params.dataIndex;
+                  console.log('index',params)
+                  return "     " + num[index]+"     " ;
+               },
+               align:'center',
+               color:'black'
+                /* align:'right' */
+            },
+        }
     ]
 },
       page: 1,
@@ -273,7 +327,7 @@ option : {
   width:1640px;
 }
 #wrapper{
-  width:1355px!important;
+  width:1388px!important
 }
 #container {
 overflow: hidden;
@@ -282,7 +336,8 @@ margin: 0 auto;
 margin-top: 20px;
 }
 .mian_left {
-  width:335px;
+  width:470x;
+  /* width:400px; */
 /* width: 268px; */
 border: 1px solid #dadada;
 float: left;
@@ -315,10 +370,12 @@ text-align: left;
 }
 #divScreenCanvas {
       margin-top: -70px;
-  width: 335px;
+     /*  width: 500px; */
+  width: 370px;
 /* width: 260px; */
 height: 630px;
 background-color: rgba(0, 0, 0, 0);
+    padding-top: 44px;
 }
 .mian_center {
 width: 664px;
