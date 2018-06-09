@@ -4,6 +4,7 @@
     font-weight: bold;
     margin-top: 37px;    text-align: left;
     margin-left: 70px;">全国用户喜好电影类型分布图 </div>
+    <div></div>
   <div id="tooltip"></div><!-- div to hold tooltip. -->
 <svg width="800" height="671" id="statesvg" style="    margin-top: 24px;
     margin-left: 167px;"></svg>
@@ -15,7 +16,9 @@ import * as d3 from 'd3'
 export default {
   data() {
     return {
-      like_type:{}
+      like_type:{},
+      uStatePaths:{},
+      map:{'ANH':"悬疑",'CHQ':"爱情",'FUJ':"喜剧",'GAN':"悬疑",'GUD':"动作",'GUI':"喜剧",'GXI':"科幻",'HAI':"科幻",'HEB':"喜剧",'HEN':"动作",'HKG':"悬疑",'HUB':"科幻",'HUN':"动作",'JIL':"悬疑",'JSU':"动作",'JXI':"悬疑",'LIA':"动作",'NMG':"科幻",'NXA':"动作",'QIH':"科幻",'SCH':"动作",'SHA':"科幻",'SHD':"动作",'SHX':"喜剧",'TAI':"动作",'TAJ':"科幻",'TIB':"科幻",'XIN':"悬疑",'YUN':"爱情",'ZHJ':"悬疑"}
     };
   },
   mounted() {
@@ -61,6 +64,7 @@ export default {
         {id: "HUN", d: "M408.279,325.242l-2.619-0.594l-1.188-1.667v-4.05l-1.43-2.026l-2.857,2.86l-1.43,2.023h-1.904l-0.594-3.096l-2.621,0.833l-3.451,2.263l-2.264-1.428c0,0-2.666-2.521-4.525-3.097c-1.857-0.576-13.217-0.832-13.217-0.832l-1.43,1.429l2.62,3.093l-3.096,2.026l-4.883-2.026l-5.117,4.287l-1.787,4.05c0,0-0.19,6.479,0.357,9.405c0.551,2.926,2.5,10.002,2.5,10.002l-5.717,6.31l0.596,0.833l5.121-1.428l1.785,2.263l-1.429,7.144l2.857,5.121l2.856,0.832l2.857-3.931l1.43,3.099l0.834-0.238l4.523-4.288l1.191,0.24l2.021-1.073l3.693,1.073v4.048l2.856,0.595l-0.832,3.929l-2.623,4.29l-1.188,3.688h1.188l3.103-2.854l2.617,5.713l2.021-1.43h2.264l2.263-1.666v-3.45l1.188-1.072l2.859,0.235l4.879,2.264l0.834-1.667l-1.188-2.023l0.354-1.429l3.098-2.619l5.478,1.428l3.096-1.906l-1.193-2.021l1.193-4.642l-0.234-6.789l-2.026-0.831l-1.785-4.647v-3.927l-0.834-0.596l-1.43,0.596l-0.832-0.955l0.594-6.188l2.502-2.024l1.785-3.454l-0.355-3.452L408.279,325.242z", n: "湖南"},
         {id: "ZHJ", d: "M483.793,336.063l-6.455,2.276l-3.693-3.69l-2.498,3.215h-4.049l-1.666-3.454l-2.023-5.118l-3.692-0.596l-4.047-7.501l-2.619-3.69l1.903-1.818l0.716-0.685c0,0,6.241-8.84,4.286-6.07c-1.954,2.769-0.239-4.882-0.239-4.882l1.43-1.906l3.336-0.594l0.951-1.43l-1.189-2.263l1.666-2.382v-4.524l2.384-1.189l3.928,2.382l4.879,0.835l3.225-3.824l3.998,3.332l-1.744,1.324l-2.021,3.096l-3.217,0.952l-1.074,0.833l3.098,1.666l5.715-2.499l9.406,3.929l0.953,7.979h-3.809l-0.24,2.382l2.024,3.332l-1.784,2.024l2.022,3.214l-3.096,3.69l-1.43-1.787l-4.644,11.788L483.793,336.063z", n: "浙江"},
         {id: "NMG", d: "M301.969,226.604l3.438-0.779l2.859-1.188l4.762-3.932l0.953-6.31l2.855-9.168l5.954-4.048l0.835,0.951l1.786,6.19l-2.858,4.049l-0.594,3.691l9.168,3.453l0.832,2.621l5.358-0.359l2.617,0.596l1.191,0.834l9.405-13.454l2.502-0.835l0.593-1.664l-0.236-2.623l3.096-4.523l6.072-0.358l2.262-2.5l1.431,1.074l3.452-2.86h1.904l6.312-9.046l3.215,0.235l3.93-2.855l1.191,1.189l7.381-3.809l-3.689-6.193l1.189-6.311l3.096-6.549l2.619-1.188l1.666,0.832v4.644l2.025,1.43l4.526-3.453l2.021-2.026l2.022,0.835l2.265-2.025l4.881-0.234l0.834-1.667l-1.191-2.622l3.453-3.452l4.049-2.024l6.31,6.908l-0.355,2.618l3.213,4.763l7.385,0.595l1.666-3.453l-1.903-10.002l1.666-1.667l3.453,2.262l3.096,4.644l4.881-7.5l2.264-0.596l3.689-3.692h1.787l3.094-3.095h1.787l1.666-2.856h4.527l4.047-4.051l2.021-2.021v-2.264l-3.213-1.667v-4.286l-5.953-7.502l-5.717,5.478l-1.666-1.19l-0.357-3.096l-2.264-3.453l-0.594-3.931v-4.046l-3.928-2.858l-0.601-1.667l1.074-2.382l7.502,2.022l0.238-3.452l2.621-3.099l-1.789-1.666l0.358-3.214l3.689-1.667l0.834-1.19l-0.598-1.07l-3.927,1.07l-7.145-4.882l-0.357-1.43l3.453-4.524l7.146-10.597l0.594-1.072h1.193l2.26,2.858l0.596,0.479l0.238-13.336l2.26-1.191v-5.121l-0.594-8.333l2.858-11.668l-8.575-6.312l-6.548,5.478l-3.45,0.476l-1.668,1.786l-5.718-0.832l-2.854-3.215l-1.664-5.122l0.236-2.021l-4.525-2.858l-2.621,4.289l-4.881-3.096l-0.834-0.835l2.856-7.5L433.4,7.223h-2.024l-5.119,3.688l-4.285,6.311l1.668,1.071l3.211,0.359l2.504,6.548l-1.43,2.618l-2.502,3.689l-4.644,17.147l1.785,2.856l-1.428,2.498l-10.599,7.742l-5.713-1.071l-3.215-1.191l-0.479,1.667l-4.642,18.577l-2.264,2.378l1.191,3.335l2.854,2.382l4.764-2.623l7.74,0.598l2.26-3.692l4.052-0.951l7.737,2.856l9.408,9.765v2.023l-2.024,1.429l-10.836,0.599l-3.691,2.854l-2.857-0.355l-2.022,3.214l-5.121,1.07l-3.457,5.12l-0.592,3.81l-7.379,4.763l-4.646,0.598l-5.119,6.904l-4.883,2.859l-9.408-2.025l-3.092-1.431l-3.692,3.694l-1.785,6.548l5.119,7.501l-3.335,3.451l-4.643,2.859c0,0-8.422,10.638-6.787,8.571c1.637-2.064-6.619,3.36-8.93,3.93c-2.31,0.568-14.525,1.429-14.525,1.429l-2.264-0.237l-16.906,7.144l-7.742,4.881l-2.262-1.19l-0.83-2.262l-10.36-0.597l-11.909-3.688l-3.211-3.69l-17.385-2.025l-3.217,1.43l-21.072-2.022l-0.358,3.095l1.43,4.883l-0.834,7.976l6.073,8.929l3.096,2.026l4.883-3.812h10.237l2.623,0.953l1.426,2.262l-1.19,2.5l-5.714,4.646l0.597,2.261l6.549,4.88h2.618l0.834,1.072l-0.596,2.023l4.05,3.217l9.403,1.429l4.527-1.19l5.716-5.719l6.903,0.598l2.857,4.289l-1.664,3.926l0.473,2.382l-3.688,2.263l-1.668,2.024l0.596,4.76l6.545,4.647L301.969,226.604z", n: "内蒙古"}];
+        vm.uStatePaths = uStatePaths;
         var uStates={};
 
         uStates.draw = function(id, data, toolTip){
@@ -92,6 +96,8 @@ export default {
             .attr("class","title")
             .attr("x",w/2)
             .attr("y",10); */
+             
+
         }
         vm.uStates=uStates;
       })();
@@ -101,9 +107,18 @@ export default {
         for (var x in vm.like_type) {
           if(vm.like_type[x][0] == n){
             type = vm.like_type[x][1];
+              /* for (var y in vm.uStatePaths) {
+                if(vm.uStatePaths[y].n == n){
+                  vm.map[vm.uStatePaths[y].id] = type;
+                 console.log('map',vm.map);
+                  break;
+                }
+              } */
             break;
           }
         }
+      
+       
         return "<h4>"+n+"</h4><table>"+
         "<tr><td>类型：</td><td>"+type+"</td></tr>"
         "</table>";
@@ -111,11 +126,28 @@ export default {
       var sampleData ={};	/* Sample random data. */	
       ['JXI', 'LIA', 'TIB', 'NMG', 'SHH', 'CHQ', 'XIN', 'SHD', 'HEN', 'GUD', 'GUI', 'BEJ', 'MAC', 'TAJ', 'HLJ', 'HEB', 'ZHJ', 'ANH', 'GXI', 'HAI', 'JIL', 'SHX', 'HUN', 'YUN', 'FUJ', 'HUB', 'SHA', 'HKG', 'QIH', 'GAN', 'JSU', 'SCH', 'NXA', 'TAI']
       .forEach(function(d){ 
+         
         var low='aa';
-        var colors = ['#3F51B5','#CFD8DC','#80CBC4','#FFCDD2','#FAFAFA','#43A047','#FF7043'];
-        var color =  Math.round(Math.random()*6);
-        console.log(color);
-        sampleData[d]={low:low, color:colors[color]}; 
+        // var colors = ['#3F51B5','#CFD8DC','#80CBC4','#FFCDD2','#FAFAFA','#43A047','#FF7043'];
+        var colors = ['#3F51B5','#CFD8DC','#80CBC4','#FFCDD2','#FAFAFA'];
+        /* var color =  Math.round(Math.random()*6); */
+        var color =  "";
+        var type = vm.map[d];
+        console.log('type',type)
+            if(type == '动作'){
+             color = colors[0];
+            }
+            else if(type == '喜剧'){
+                color = colors[1];
+            }else if(type == '爱情'){
+                color = colors[2];
+            }else if(type == '悬疑'){
+                  color = colors[3];
+            }else{
+                color = colors[4];
+            }
+            
+        sampleData[d]={low:low, color:color}; 
         // d3.interpolate("#ffffcc", "#800026")(low/100)
       });
 	
@@ -148,7 +180,7 @@ export default {
 
           /* console.log(arr); */
           vm.like_type = res;
-          console.log(res);
+          /* console.log(res); */
         })
         .catch(function(response) {
           //错误处理 比如出现一个蒙层显示网络错误
@@ -162,62 +194,62 @@ export default {
 #wrapper {
   overflow: scroll;
   width: 1024px !important;
-      margin-top: 40px;
+  margin-top: 40px;
 }
 #chart {
   width: 1000px !important;
   height: 745px !important;
   margin: 0 auto;
-      margin-top: 89px;
+  margin-top: 89px;
 }
 ::-webkit-scrollbar {
   width: 1px;
   height: 1px;
 }
-.state{
-		fill: none;
-		stroke: #a9a9a9;
-		stroke-width: 1;
-	}
-	.state:hover{
-		fill-opacity:0.5;
-	}
-	#tooltip {   
-		position: absolute;           
-		text-align: center;
-		padding: 20px;             
-		margin: 10px;
-		font: 12px sans-serif;        
-		background: lightsteelblue;   
-		border: 1px;      
-		border-radius: 2px;           
-		pointer-events: none;         
-	}
-	#tooltip h4{
-		margin:0;
-		font-size:14px;
-	}
-	#tooltip{
-		background:rgba(0,0,0,0.9);
-		border:1px solid grey;
-		border-radius:5px;
-		font-size:12px;
-		width:auto;
-		padding:4px;
-		color:white;
-		opacity:0;
-	}
-	#tooltip table{
-		table-layout:fixed;
-	}
-	#tooltip tr td{
-		padding:0;
-		margin:0;
-	}
-	#tooltip tr td:nth-child(1){
-		width:50px;
-	}
-	#tooltip tr td:nth-child(2){
-		text-align:center;
-	}
+.state {
+  fill: none;
+  stroke: #a9a9a9;
+  stroke-width: 1;
+}
+.state:hover {
+  fill-opacity: 0.5;
+}
+#tooltip {
+  position: absolute;
+  text-align: center;
+  padding: 20px;
+  margin: 10px;
+  font: 12px sans-serif;
+  background: lightsteelblue;
+  border: 1px;
+  border-radius: 2px;
+  pointer-events: none;
+}
+#tooltip h4 {
+  margin: 0;
+  font-size: 14px;
+}
+#tooltip {
+  background: rgba(0, 0, 0, 0.9);
+  border: 1px solid grey;
+  border-radius: 5px;
+  font-size: 12px;
+  width: auto;
+  padding: 4px;
+  color: white;
+  opacity: 0;
+}
+#tooltip table {
+  table-layout: fixed;
+}
+#tooltip tr td {
+  padding: 0;
+  margin: 0;
+}
+#tooltip tr td:nth-child(1) {
+  width: 50px;
+}
+#tooltip tr td:nth-child(2) {
+  text-align: center;
+}
 </style>
